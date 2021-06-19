@@ -8,9 +8,9 @@ public class Contact {
     private String phoneNumber;
     private String kindOfContact;
 
-    private Persons persons_Contact;
-    @ManyToOne
-    @JoinColumn(name = "National_Code_Contact")
+    Persons persons_Contact;
+    @ManyToOne()
+    @JoinColumn(name = "National_Code_Contact",referencedColumnName = "NATIONAL_CODE")
     public Persons getPersons_Contact() {
         return persons_Contact;
     }

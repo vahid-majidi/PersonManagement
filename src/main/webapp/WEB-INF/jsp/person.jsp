@@ -10,41 +10,50 @@
 <html>
 <head>
     <title>PersonManagement</title>
-  <link  rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
 </head>
 <body>
 
-<table border="2">
-
+<table border="1">
     <tr>
-        <td>
+        <th>
+            Name
+        </th>
+        <th>
+            Family
+        </th>
+        <th>
             NickName
-        </td>
-        <td>
+        </th>
+        <th>
             FatherName
-        </td>
-        <td>
+        </th>
+        <th>
             NationalCode
-        </td>
-           <td>
+        </th>
+        <th>
             Modify\Delete
-        </td>
-        <td>
+        </th>
+        <th>
             Contanct
-        </td>
-        <td>
+        </th>
+        <th>
             Address
-        </td>
-       </tr>
+        </th>
+    </tr>
     <c:forEach items="${personList}" var="personList">
-
         <tr>
+            <td>
+                    ${personList.firstName}
+            </td>
+            <td>
+                    ${personList.lastName}
+            </td>
             <td>
                     ${personList.firstName}${personList.lastName}
             </td>
             <td>
                     ${personList.fatherName}
-
             </td>
             <td>
                     ${personList.nationalCode}
@@ -61,25 +70,32 @@
             </td>
         </tr>
     </c:forEach>
-
+    <tr>
+        <td>
+            <form method="get" action="${pageContext.request.contextPath}/person/addPerson">
+                <input type="submit" value="AddNewPerson">
+            </form>
+        </td>
+    </tr>
 </table>
-<hr>
-<table bgcolor="#fff8dc" border="2">
-    <form method="get" action="${pageContext.request.contextPath}/person/addPerson">
-        <input type="submit" value="AddNewPerson" >
-    </form>
+<table border="1">
+<tr>
+    <th>
+        Show List Of City Order By Province
+    </th>
+</tr>
+    <tr>
+        <td>
+            <form method="get" action="/person/showCityList">
+                <select name="province">
+                    <c:forEach items="${distinct}" var="addressList">
+                        <option value="${addressList}" label="province" name="Province">${addressList}</option>
+                    </c:forEach>
+                </select>
+                <br><input type="submit" value="select">
+            </form>
+        </td>
+    </tr>
 </table>
-<hr>
-<form method="get" action="/person/showCityList">
-
-    <select name="province">
-<c:forEach items="${distinct}" var="addressList">
-        <option value="${addressList}">${addressList}</option>
-</c:forEach>
-    </select>
-    <input type="submit" value="select">
-</form>
-
-
 </body>
 </html>

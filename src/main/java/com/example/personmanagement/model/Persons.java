@@ -1,7 +1,8 @@
 package com.example.personmanagement.model;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Persons {
@@ -9,29 +10,23 @@ public class Persons {
     private String firstName;
     private String lastName;
     private String fatherName;
+    private Set<Address> addressList=new HashSet<>();
+    private Set<Contact> contactList=new HashSet<>();
 
-    private List<Address> addressList;
-
-    private List<Contact> contactList;
-
-    @OneToMany(mappedBy = "persons_Contact")
-    public List<Contact> getContactList() {
+    @OneToMany(mappedBy = "persons_Contact",cascade = CascadeType.ALL)
+    public Set<Contact> getContactList() {
         return contactList;
     }
-
-    public void setContactList(List<Contact> contactList) {
+    public void setContactList(Set<Contact> contactList) {
         this.contactList = contactList;
     }
-
-    @OneToMany(mappedBy = "persons_address")
-    public List<Address> getAddressList() {
+    @OneToMany(mappedBy = "persons_address",cascade = CascadeType.ALL)
+    public Set<Address> getAddressList() {
         return addressList;
     }
-
-    public void setAddressList(List<Address> addressList) {
+    public void setAddressList(Set<Address> addressList) {
         this.addressList = addressList;
     }
-
     @Id
     @Column(name = "NATIONAL_CODE",unique = true)
 

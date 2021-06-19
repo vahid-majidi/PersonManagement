@@ -9,24 +9,47 @@
 <html>
 <head>
     <title>Title</title>
-    <link  rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
 </head>
 <body>
-<div class="container">
-  <form action="save" method="post">
-<label for="fname">FirstName</label>
-      <input type="text" id="fname" name="firstName"><br>
-    <label for="lname">LastName</label>
-      <input type="text" id="lname" name="lastName" ><br>
-    <label for="faname">FatherName</label>
-      <input type="text" id="faname" name="fatherName" ><br>
-    <label for="nationalCode">NationalCode</label>
-      <input type="text"  id="nationalCode" name="nationalCode" ><br>
-      <input type="submit" value="Save"></input>
+<table>
+    <tr>
+        <th>
+            FirstName
+        </th>
+        <th>
+            LastName
+        </th>
+        <th>
+            FatherName
+        </th>
+        <th>
+            NationalCode
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    <tr>
+        <form action="save" method="post">
+            <td>
+                <input type="text" id="fname" name="firstName"><br>
+            </td>
+            <td>
+                <input type="text" id="lname" name="lastName"><br>
+            </td>
+            <td>
+                <input type="text" id="faname" name="fatherName"><br>
+            </td>
+            <td>
+                <input type="text" id="nationalCode" name="nationalCode"><br>
+            </td>
+            <td>
+                <input type="submit" value="Save"></input>
+            </td>
 
-  </form>
-
-</div>
-
+        </form>
+    </tr>
+</table>
 </body>
 </html>

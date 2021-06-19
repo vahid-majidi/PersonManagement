@@ -12,4 +12,5 @@ public interface PersonsRepository extends JpaRepository<Persons, Integer> {
     @Modifying
     @Transactional
     void updatePerson(String firstName,String lastName,String fatherName,int nationalCode);
+
 }

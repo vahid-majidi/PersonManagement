@@ -6,39 +6,66 @@
       <link  rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
 </head>
 <body>
-<form action="addContact" method="post">
-  <select name="kindOfContact">
-    <option value="HomeNumber">homeNumber</option>
-    <option value="WorkNumber">WorkNumber</option>
-    <option value="CellPhoneNumber"> CellPhoneNumber</option>
-    <option value="Email">Email</option>
-  </select>
-  <input type="text" name="phoneNumber">
-  <input type="text" name="NATIONAL_CODE_CONTACT" value="${nationalCode_c}" readonly="readonly">
-  <input type="submit" value="Save">
+<table>
+  <tr>
+    <th>
+      Kind OF Contact
+    </th>
+    <th>
+      Number/Email
+    </th>
+    <th>
+      NationalCode
+    </th>
+    <th>
+      Action
+    </th>
+  </tr>
+  <tr>
+    <form action="addContact" method="post">
+      <td>
+        <select name="kindOfContact">
+          <option value="HomeNumber">homeNumber</option>
+          <option value="WorkNumber">WorkNumber</option>
+          <option value="CellPhoneNumber"> CellPhoneNumber</option>
+          <option value="Email">Email</option>
+        </select>
+      </td>
+  <td>
+    <input type="text" name="phoneNumber">
 
-</form>
+  </td>
+      <td>
+        <input type="text" name="nationalCode" value="${nationalCode_c}" readonly="readonly">
+      </td>
+      <td>
+        <input type="submit" value="Save">
+      </td>
+
+    </form>
+  </tr>
+</table>
+
 <form action="/person" method="get">
   <table border="2">
     <tr>
-      <td>
+      <th>
         KindOFContact
-      </td>
-      <td>
+      </th>
+      <th>
         Info
-      </td>
+      </th>
     </tr>
+<c:forEach items="${contactnumber}" var="num">
     <tr>
-      <c:forEach items="${contactCount}" var="contactC">
-<td>
-  ${contactC.kindOfContact}
+    <td>
+  ${num.kindOfContact}
 </td>
-        <td>
-  ${contactC.phoneNumber}
-</td>
+  <td>
+      ${num.phoneNumber}
+  </td>
     </tr>
-
-    </c:forEach>
+</c:forEach>
   </table>
 </form>
 </body>

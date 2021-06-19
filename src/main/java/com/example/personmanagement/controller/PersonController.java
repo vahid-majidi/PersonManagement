@@ -7,7 +7,6 @@ import com.example.personmanagement.Repository.PersonsRepository;
 import com.example.personmanagement.model.Address;
 import com.example.personmanagement.model.Contact;
 import com.example.personmanagement.model.Persons;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,7 +17,6 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping(method = RequestMethod.GET, value = "/person")
@@ -40,7 +38,6 @@ AddressRepository addressRepository;
     public String showPersonInfo(Model model) {
         List<Persons> personsList = personsRepository.findAll();
             List<String> distinctByProvince = addressRepository.getProvince();
-//            List<Address> addressList=addressRepository.findAll();
             model.addAttribute("personList", personsList);
         model.addAttribute("distinct",distinctByProvince);
         return "person";
@@ -83,32 +80,46 @@ AddressRepository addressRepository;
 
     @PostMapping(value = "/Contact/{nationalCode}")
     public String contactForm(@PathVariable int nationalCode, Model model) {
-        List<Contact> contactByContactId = contactReposotory.findContactByContactId(nationalCode);
-        model.addAttribute("contactCount",contactByContactId);
+        List<Contact> allByPersons_contact = contactReposotory.getAllByPersons_Contact(nationalCode);
+        model.addAttribute("contactnumber",allByPersons_contact);
         model.addAttribute("nationalCode_c", nationalCode);
         return "addContact";
     }
 
     @PostMapping(value = "/address/{nationalCode}")
     public String addressForm(@PathVariable int nationalCode, Model model) {
+        List<Address> allByAddressId = addressRepository.getAllByAddressId(nationalCode);
         model.addAttribute("nationalCode_a", nationalCode);
+        model.addAttribute("AddressList",allByAddressId);
         return "addAddress";
     }
 
     @PostMapping(value = "/Contact/addContact")
     @Transactional
-    public String addContact(Contact contact) {
-
+    public String addContact(@RequestParam int nationalCode,@RequestParam String kindOfContact,@RequestParam String phoneNumber) {
+        Persons persons = personsRepository.getById(nationalCode);
+Contact contact=new Contact();
+contact.setKindOfContact(kindOfContact);
+contact.setPhoneNumber(phoneNumber);
+persons.getContactList().add(contact);
+contact.setPersons_Contact(persons);
         entityManager.persist(contact);
         return "redirect:/person";
     }
 
     @PostMapping(value = "/address/addAddress")
     @Transactional
-    public String addAddress(Address address)
+    public String addAddress(@RequestParam int nationalCode,@RequestParam String province,@RequestParam String city,@RequestParam int postcode)
         {
+            Address address=new Address();
+            address.setCity(city);
+            address.setPostcode(postcode);
+            address.setProvince(province);
+            Persons persons = personsRepository.getById(nationalCode);
+            address.setPersons_address(persons);
+            persons.getAddressList().add(address);
         entityManager.persist(address);
-            return "person";
+            return "redirect:/person";
     }
     @PostMapping(value = "/showCityList")
     public String showCityList(@RequestParam String province,Model model){

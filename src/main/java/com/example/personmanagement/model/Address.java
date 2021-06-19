@@ -9,9 +9,9 @@ public class Address {
     private String city;
     private Integer postcode;
 
-    private Persons persons_address;
-    @ManyToOne
-    @JoinColumn(name = "NATIONAL_CODE_ADDRESS")
+     Persons persons_address;
+    @ManyToOne()
+    @JoinColumn(name = "NATIONAL_CODE_ADDRESS",referencedColumnName = "NATIONAL_CODE")
     public Persons getPersons_address() {
         return persons_address;
     }
