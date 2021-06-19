@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>PersonManagement</title>
-
+  <link  rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
 </head>
 <body>
 
