@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link  rel="stylesheet" href="${pageContext.request.contextPath}/resources/style.css">
 </head>
 <body>
 <div class="container">
