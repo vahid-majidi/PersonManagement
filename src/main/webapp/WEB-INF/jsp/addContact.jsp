@@ -44,6 +44,13 @@
 
     </form>
   </tr>
+  <tr>
+    <td>
+      <form method="get" action="/person">
+        <input type="submit" value="Back">
+      </form>
+    </td>
+  </tr>
 </table>
 
 <form action="/person" method="get">

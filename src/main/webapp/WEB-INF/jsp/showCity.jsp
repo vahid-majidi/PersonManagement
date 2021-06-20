@@ -16,12 +16,12 @@
 <body>
 <table border="2">
   <tr>
-    <td>
+    <th>
       Province
-    </td>
-    <td>
+    </th>
+    <th>
       City
-    </td>
+    </th>
   </tr>
   <c:forEach items="${cityList}" var="cityList">
     <tr>
@@ -33,9 +33,15 @@
       </td>
     </tr>
   </c:forEach>
+  <tr>
+    <td>
+      <form method="get" action="/person">
+        <input type="submit" value="Back">
+      </form>
+    </td>
+  </tr>
+
 </table>
-<form method="get" action="/person">
-  <input type="submit" value="Back">
-</form>
+
 </body>
 </html>

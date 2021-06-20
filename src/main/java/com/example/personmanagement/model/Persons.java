@@ -13,7 +13,6 @@ import java.util.Set;
 
 @Entity
 public class Persons {
-
     private Integer nationalCode;
     private String firstName;
     private String lastName;
@@ -40,7 +39,7 @@ public class Persons {
     }
 
     @Id
-    @Column(name = "NATIONAL_CODE", unique = true)
+    @Column(name = "NATIONAL_CODE",unique = true)
     public Integer getNationalCode() {
         return nationalCode;
     }

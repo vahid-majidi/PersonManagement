@@ -45,7 +45,6 @@ AddressRepository addressRepository;
 
     @GetMapping(value = "/addPerson")
     public String showAddPersonForm(Model model) {
-            model.addAttribute(new Persons());
             return "addPerson";
     }
 
@@ -54,7 +53,7 @@ AddressRepository addressRepository;
     @Transactional
     public String addPerson(@Validated Persons persons, BindingResult bindingResult) {
             if (bindingResult.hasErrors())
-                return "/addPerson";
+                return "/error";
         entityManager.persist(persons);
         return "redirect:/person";
     }

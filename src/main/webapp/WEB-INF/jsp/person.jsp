@@ -87,7 +87,7 @@
     <tr>
         <td>
             <form method="get" action="/person/showCityList">
-                <select name="province">
+         <label/>Select Province       <select name="province">
                     <c:forEach items="${distinct}" var="addressList">
                         <option value="${addressList}" label="province" name="Province">${addressList}</option>
                     </c:forEach>

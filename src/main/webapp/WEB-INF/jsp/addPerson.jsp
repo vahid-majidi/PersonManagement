@@ -32,27 +32,30 @@
         </th>
     </tr>
     <tr>
-        <form:form  action="save" method="post" modelAttribute="persons">
+        <form  action="save" method="post">
             <td>
-                <form:input path="firstName"/><br>
-                <form:errors path="firstName"/><br>
+                <input type="text" name="firstName"/><br>
             </td>
             <td>
-                <form:input path="lastName"/><br>
-                <form:errors path="lastName"/><br>
+                <input type="text" name="lastName"/><br>
             </td>
             <td>
-                <form:input path="fatherName"/><br>
-                <form:errors path="fatherName"/><br>
+                <input type="text" name="fatherName"/><br>
             </td>
             <td>
-                <form:input path="nationalCode"/><br>
-                <form:errors path="nationalCode"/><br>
+                <input type="text" name="nationalCode"/><br>
             </td>
             <td>
                 <input type="submit" value="Save">
             </td>
-        </form:form>
+        </form>
+    </tr>
+    <tr>
+        <td>
+            <form method="get" action="/person">
+                <input type="submit" value="Back">
+            </form>
+        </td>
     </tr>
 </table>
 </body>
