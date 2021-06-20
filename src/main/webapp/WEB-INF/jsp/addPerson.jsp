@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Hooman
@@ -31,24 +32,27 @@
         </th>
     </tr>
     <tr>
-        <form action="save" method="post">
+        <form:form  action="save" method="post" modelAttribute="persons">
             <td>
-                <input type="text" id="fname" name="firstName"><br>
+                <form:input path="firstName"/><br>
+                <form:errors path="firstName"/><br>
             </td>
             <td>
-                <input type="text" id="lname" name="lastName"><br>
+                <form:input path="lastName"/><br>
+                <form:errors path="lastName"/><br>
             </td>
             <td>
-                <input type="text" id="faname" name="fatherName"><br>
+                <form:input path="fatherName"/><br>
+                <form:errors path="fatherName"/><br>
             </td>
             <td>
-                <input type="text" id="nationalCode" name="nationalCode"><br>
+                <form:input path="nationalCode"/><br>
+                <form:errors path="nationalCode"/><br>
             </td>
             <td>
-                <input type="submit" value="Save"></input>
+                <input type="submit" value="Save">
             </td>
-
-        </form>
+        </form:form>
     </tr>
 </table>
 </body>

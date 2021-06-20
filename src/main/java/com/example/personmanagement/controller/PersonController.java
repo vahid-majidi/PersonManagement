@@ -44,8 +44,9 @@ AddressRepository addressRepository;
     }
 
     @GetMapping(value = "/addPerson")
-    public String showAddPersonForm() {
-        return "addPerson";
+    public String showAddPersonForm(Model model) {
+            model.addAttribute(new Persons());
+            return "addPerson";
     }
 
 
@@ -53,7 +54,7 @@ AddressRepository addressRepository;
     @Transactional
     public String addPerson(@Validated Persons persons, BindingResult bindingResult) {
             if (bindingResult.hasErrors())
-                return "error";
+                return "/addPerson";
         entityManager.persist(persons);
         return "redirect:/person";
     }
@@ -83,6 +84,7 @@ AddressRepository addressRepository;
         List<Contact> allByPersons_contact = contactReposotory.getAllByPersons_Contact(nationalCode);
         model.addAttribute("contactnumber",allByPersons_contact);
         model.addAttribute("nationalCode_c", nationalCode);
+        model.addAttribute(new Contact());
         return "addContact";
     }
 
